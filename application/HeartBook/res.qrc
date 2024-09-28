@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/res">
+        <file>assets/icons/icon_heart_pulse.svg</file>
+        <file>assets/icons/icon_heart_give.svg</file>
+    </qresource>
+</RCC>
