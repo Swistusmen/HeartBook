@@ -3,6 +3,7 @@ import QtQuick.Layouts
 import HeartBook
 
 Item {
+    id: root
     required property StackLayout stackLayoutRef
 
     anchors {
@@ -16,6 +17,13 @@ Item {
         id: background
         anchors.fill: parent
         color: styles.rose2
+        MouseArea {
+            anchors.fill: parent
+            onClicked: {
+                forceActiveFocus()
+                //console.log("Focus catched!")
+            }
+        }
 
         Item {
             id: headerContent
@@ -50,6 +58,20 @@ Item {
                 font.bold: true
             }
 
+            MouseArea {
+                anchors {
+                    top: parent.top
+                    bottom: parent.bottom
+                    left: appHeaderIcon.left
+                    right: headerTitle.right
+                }
+                onClicked: {
+                    forceActiveFocus()
+                    stackLayoutRef.currentIndex = 0
+
+                }
+            }
+
             Row {
                 id: buttonsHeaderRow
                 anchors {
@@ -68,8 +90,8 @@ Item {
                     }
 
                     onClicked: {
-                        console.log("log in")
-                        stackLayoutRef.currentIndex = 0
+                        // console.log("log in")
+                        stackLayoutRef.currentIndex = 2
                     }
                     heightMultiplier: .8
                 }
@@ -80,15 +102,14 @@ Item {
                         verticalCenter: parent.verticalCenter
                     }
                     onClicked: {
-                        console.log("sign up")
-                        stackLayoutRef.currentIndex = 1
+                        // console.log("sign up")
+                        stackLayoutRef.currentIndex = 3
                     }
                     heightMultiplier: .8
                 }
 
             }
         }
-
     }
     AppStyle { id: styles }
 }

@@ -1,9 +1,13 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
+#include "MiddleMan.h"
 
 int main(int argc, char *argv[])
 {
     QGuiApplication app(argc, argv);
+
+    MiddleMan* m_middleMan = new MiddleMan(&app);
+    qmlRegisterSingletonInstance("com.HeartBook.MiddleMan", 1, 0, "MiddleMan", m_middleMan);
 
     QQmlApplicationEngine engine;
     QObject::connect(

@@ -34,6 +34,7 @@ Rectangle {
         hoverEnabled: true
         onClicked: {
             root.clicked()
+            forceActiveFocus()
         }
     }
 

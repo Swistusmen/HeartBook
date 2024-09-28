@@ -26,6 +26,11 @@ qt_add_qml_module(appHeartBook
         QML_FILES PureSquareButton.qml
         QML_FILES ScrollablePage.qml
         QML_FILES SharpSquareButton.qml
+        QML_FILES ColoredInputSingle.qml
+        SOURCES MiddleMan.h MiddleMan.cpp
+        SOURCES
+        SOURCES NGOListingInfo.h NGOListingInfo.cpp
+        QML_FILES ColoredInputMulti.qml
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.

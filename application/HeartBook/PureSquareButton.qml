@@ -51,6 +51,7 @@ Item {
             root.clicked()
             mouseArea.enabled = false
             cooldownTimer.start()
+            forceActiveFocus()
         }
     }
 
