@@ -103,14 +103,38 @@ Window {
                                     top: parent.top
                                 }
                                 height: 100
+                                MouseArea { anchors.fill: parent; onClicked: forceActiveFocus() }
 
                                 PureSquareButton {
-                                    textContent: "Create a corporate listing"
+                                    textContent: corpopListingCreator.hidden ? "Create a corporate listing"
+                                        : "Cancel"
                                     anchors {
                                         left: parent.left
                                         verticalCenter: parent.verticalCenter
                                         leftMargin: 30
                                     }
+                                    onClicked: {
+                                        corpopListingCreator.hidden = !corpopListingCreator.hidden
+                                        //console.log("feature is now: " + corpopListingCreator.hidden)
+                                    }
+                                }
+                            }
+                            Item {
+                                anchors {
+                                    top: corpTopSec.bottom
+                                    left: parent.left
+                                    right: parent.right
+                                    bottom: parent.bottom
+                                }
+
+                                CorpoListingCreator {
+                                    id: corpopListingCreator
+                                    anchors {
+                                        left: parent.left
+                                        right: parent.right
+                                        top: parent.top
+                                    }
+                                    visible: hidden ? false : true
                                 }
                             }
                         }

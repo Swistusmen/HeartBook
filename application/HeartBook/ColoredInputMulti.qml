@@ -17,10 +17,10 @@ Item {
 
     property string inputValue: input.text
 
-    implicitWidth: 150
+    implicitWidth: 450
     //width: 100
     //width: outerBackground.width
-    height: root.contentSize * 2.5
+    height: input.height * 1.2
     Rectangle {
         anchors.fill: input
         color: root.bgColor
@@ -35,7 +35,8 @@ Item {
         anchors {
             left: parent.left
             right: parent.right
-            verticalCenter: parent.verticalCenter
+            top: parent.top
+            //verticalCenter: parent.verticalCenter
             // top: parent.top
             // bottom: parent.bottom
             // centerIn: parent
@@ -45,6 +46,7 @@ Item {
         //background: Rectangle { color: root.bgColor }
         color: root.inputTextColor
         font.pixelSize: root.textSize
+        wrapMode: TextEdit.WordWrap
 
         // validator: IntValidator {
         //     bottom: 1
@@ -63,13 +65,13 @@ Item {
         }
 
         Keys.onPressed: (event)=> {
-            if (event.key === Qt.Key_Escape || event.key === Qt.Key_Return || event.key === Qt.Key_Enter || event.key === Qt.Key_Tab) {
+            if (event.key === Qt.Key_Escape || event.key === Qt.Key_Tab) {
                 input.focus = false;  // Unfocus on Escape, Enter, Tab
             }
         }
         onActiveFocusChanged: {
             if (parent.activeFocus === false) {
-                console.log("Input value: " + input.text)
+                //console.log("Input value: " + input.text)
             }
         }
     }
