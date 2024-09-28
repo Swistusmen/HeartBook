@@ -9,7 +9,7 @@ Item {
     property color buttonColorHovered: styles.rose5
     property color buttonColorPressed: styles.rose6
     property color textColor: styles.white
-    property int contentSize: styles.h8
+    property int contentSize: styles.h9
     property bool textBold: false
     property int buttonCooldown: 1
     property bool defaultMouseAreaEnabled: true

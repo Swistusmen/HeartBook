@@ -3,7 +3,7 @@ import QtQuick
 QtObject {
     id: styleObject
 
-    readonly property int pageWidthContent: 1200
+    readonly property int pageWidthContent: 1100
     readonly property int appHeaderSectionHeight: 125
 
 

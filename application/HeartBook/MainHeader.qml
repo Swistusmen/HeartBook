@@ -1,9 +1,9 @@
 import QtQuick
-import QtQuick.Controls
+import QtQuick.Layouts
 import HeartBook
 
 Item {
-    //required property StackView stackViewRef
+    required property StackLayout stackLayoutRef
 
     anchors {
         left: parent.left
@@ -53,32 +53,39 @@ Item {
             Row {
                 id: buttonsHeaderRow
                 anchors {
-                    left: headerTitle.right
+                    //left: headerTitle.right
                     right: parent.right
                     top: parent.top
                     bottom: parent.verticalCenter
                 }
+                spacing: 10
 
                 PureSquareButton {
                     id: loginButton
                     textContent: qsTr("Log in")
-                    onClicked: console.log("log in")
+                    anchors {
+                        verticalCenter: parent.verticalCenter
+                    }
+
+                    onClicked: {
+                        console.log("log in")
+                        stackLayoutRef.currentIndex = 0
+                    }
                     heightMultiplier: .8
                 }
-                Rectangle {
-                    width: 600
-                    height: 100
-                    color: styles.white
-                    Row {
-                        anchors.fill: parent
-                        Rectangle { width: 75; height: 75; color: styles.rose1 }
-                        Rectangle { width: 75; height: 75; color: styles.rose2 }
-                        Rectangle { width: 75; height: 75; color: styles.rose3 }
-                        Rectangle { width: 75; height: 75; color: styles.rose4 }
-                        Rectangle { width: 75; height: 75; color: styles.rose5 }
-                        Rectangle { width: 75; height: 75; color: styles.rose6 }
+                PureSquareButton {
+                    id: signupButton
+                    textContent: qsTr("Sign up")
+                    anchors {
+                        verticalCenter: parent.verticalCenter
                     }
+                    onClicked: {
+                        console.log("sign up")
+                        stackLayoutRef.currentIndex = 1
+                    }
+                    heightMultiplier: .8
                 }
+
             }
         }
 
