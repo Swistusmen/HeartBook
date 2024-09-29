@@ -97,7 +97,7 @@ Window {
 
                         Item {
                             Rectangle {
-                                id: corpTopSec
+                                id: ngoTopSec
                                 color: styles.greyLight
                                 anchors {
                                     left: parent.left
@@ -108,7 +108,7 @@ Window {
                                 MouseArea { anchors.fill: parent; onClicked: forceActiveFocus() }
 
                                 PureSquareButton {
-                                    textContent: corpopListingCreator.hidden ? "Create a NGO listing"
+                                    textContent: ngoListingCreator.hidden ? "Create a NGO listing"
                                         : "Cancel"
                                     anchors {
                                         left: parent.left
@@ -116,22 +116,22 @@ Window {
                                         leftMargin: 30
                                     }
                                     onClicked: {
-                                        corpopListingCreator.hidden = !corpopListingCreator.hidden
+                                        ngoListingCreator.hidden = !ngoListingCreator.hidden
                                         //console.log("feature is now: " + corpopListingCreator.hidden)
                                     }
                                 }
                             }
                             Item {
-                                id: corpoCreatorSection
+                                id: ngoCreatorSection
                                 anchors {
-                                    top: corpTopSec.bottom
+                                    top: ngoTopSec.bottom
                                     left: parent.left
                                     right: parent.right
                                 }
                                 z: 1
 
-                                CorpoListingCreator {
-                                    id: corpopListingCreator
+                                NGOListingCreator {
+                                    id: ngoListingCreator
                                     anchors {
                                         left: parent.left
                                         right: parent.right
@@ -141,9 +141,9 @@ Window {
                                 }
                             }
                             ListView {
-                                id: corpoListView
+                                id: ngoListView
                                 anchors {
-                                    top: corpTopSec.bottom
+                                    top: ngoTopSec.bottom
                                     left: parent.left
                                     right: parent.right
                                     bottom: parent.bottom
@@ -154,7 +154,7 @@ Window {
                                 spacing: 20
                                 clip: true
                                 delegate: Item {
-                                    id: corpoListing
+                                    id: ngoListing
 
                                     required property string corpoName
                                     required property string corpoExperience
@@ -171,7 +171,7 @@ Window {
                                         color: styles.rose6
                                         radius: styles.squareButtonRoundness
                                         Image {
-                                            id: corpoPreviewImg
+                                            id: ngoPreviewImg
                                             anchors {
                                                 top: parent.top
                                                 bottom: parent.bottom
@@ -179,97 +179,97 @@ Window {
                                                 margins: 15
                                             }
                                             width: 300
-                                            source: corpoListing.corpoImage
+                                            source: ngoListing.corpoImage
                                             fillMode: Image.PreserveAspectCrop
 
                                             layer.enabled: true
                                             layer.effect: OpacityMask {
                                                 maskSource: ShaderEffectSource {
                                                     sourceItem: Rectangle {
-                                                        width: corpoPreviewImg.width
-                                                        height: corpoPreviewImg.height
+                                                        width: ngoPreviewImg.width
+                                                        height: ngoPreviewImg.height
                                                         radius: styles.squareButtonRoundness
                                                     }
                                                 }
                                             }
                                         }
                                         Text {
-                                            id: corpoNamePreview
+                                            id: ngoNamePreview
                                             anchors {
                                                 top: parent.top
-                                                left: corpoPreviewImg.right
+                                                left: ngoPreviewImg.right
                                                 margins: 15
                                                 right: parent.right
                                             }
                                             color: styles.black
                                             font.bold: true
                                             font.pixelSize: styles.h6
-                                            text: corpoListing.corpoName
+                                            text: ngoListing.corpoName
                                             elide: Text.ElideRight
                                         }
                                         Text {
-                                            id: corpoExperiencePreview
+                                            id: ngoExperiencePreview
                                             anchors {
-                                                top: corpoNamePreview.bottom
-                                                left: corpoPreviewImg.right
+                                                top: ngoNamePreview.bottom
+                                                left: ngoPreviewImg.right
                                                 leftMargin: 15
                                                 right: parent.right
                                             }
                                             color: styles.black
                                             font.pixelSize: styles.h9
-                                            text: "Experience: " + corpoListing.corpoExperience
+                                            text: "Experience: " + ngoListing.corpoExperience
                                             elide: Text.ElideRight
                                         }
                                         Text {
-                                            id: corpoGoalsPreview
+                                            id: ngoGoalsPreview
                                             anchors {
-                                                top: corpoExperiencePreview.bottom
-                                                left: corpoPreviewImg.right
+                                                top: ngoExperiencePreview.bottom
+                                                left: ngoPreviewImg.right
                                                 leftMargin: 15
                                                 right: parent.right
                                             }
                                             color: styles.black
                                             font.pixelSize: styles.h9
-                                            text: "Our goals: " + corpoListing.corpoGoals
+                                            text: "Our goals: " + ngoListing.corpoGoals
                                             elide: Text.ElideRight
                                         }
                                         Text {
-                                            id: corpoTeamPreview
+                                            id: ngoTeamPreview
                                             anchors {
-                                                top: corpoGoalsPreview.bottom
-                                                left: corpoPreviewImg.right
+                                                top: ngoGoalsPreview.bottom
+                                                left: ngoPreviewImg.right
                                                 leftMargin: 15
                                                 right: parent.right
                                             }
                                             color: styles.black
                                             font.pixelSize: styles.h9
-                                            text: "Our team: " + corpoListing.corpoTeam
+                                            text: "Our team: " + ngoListing.corpoTeam
                                             elide: Text.ElideRight
                                         }
                                         Text {
-                                            id: corpoTagsPreview
+                                            id: ngoTagsPreview
                                             anchors {
-                                                top: corpoTeamPreview.bottom
-                                                left: corpoPreviewImg.right
+                                                top: ngoTeamPreview.bottom
+                                                left: ngoPreviewImg.right
                                                 leftMargin: 15
                                                 right: parent.right
                                             }
                                             color: styles.black
                                             font.pixelSize: styles.h10
-                                            text: "Tags: " + corpoListing.corpoTags
+                                            text: "Tags: " + ngoListing.corpoTags
                                             elide: Text.ElideRight
                                         }
                                         Text {
-                                            id: corpoContactPreview
+                                            id: ngoContactPreview
                                             anchors {
-                                                top: corpoTagsPreview.bottom
-                                                left: corpoPreviewImg.right
+                                                top: ngoTagsPreview.bottom
+                                                left: ngoPreviewImg.right
                                                 leftMargin: 15
                                                 right: parent.right
                                             }
                                             color: styles.black
                                             font.pixelSize: styles.h10
-                                            text: "Contact us: " + corpoListing.corpoContact
+                                            text: "Contact us: " + ngoListing.corpoContact
                                             elide: Text.ElideRight
                                         }
                                     }
@@ -280,7 +280,7 @@ Window {
 
 
                             Rectangle {
-                                id: ngoTopSec
+                                id: corpoTopSec
                                 color: styles.greyLight
                                 anchors {
                                     left: parent.left

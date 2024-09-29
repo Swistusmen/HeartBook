@@ -21,7 +21,7 @@ Rectangle {
 
     Column {
         id: container
-        property var corpoTags: []
+        property var ngoTags: []
         anchors {
             left: parent.left
             right: parent.right
@@ -33,12 +33,12 @@ Rectangle {
             Text {
                 color: styles.black
                 font.pixelSize: styles.h9
-                text: qsTr("Corporation name")
+                text: qsTr("NGO name")
                 verticalAlignment: Text.AlignVCenter
-                anchors.top: corpoNameInput.top
+                anchors.top: ngoNameInput.top
             }
             ColoredInputMulti {
-                id: corpoNameInput
+                id: ngoNameInput
 
             }
         }
@@ -49,10 +49,10 @@ Rectangle {
                 font.pixelSize: styles.h9
                 text: qsTr("Experience")
                 verticalAlignment: Text.AlignVCenter
-                anchors.top: corpoExperienceInput.top
+                anchors.top: ngoExperienceInput.top
             }
             ColoredInputMulti {
-                id: corpoExperienceInput
+                id: ngoExperienceInput
             }
         }
         Row {
@@ -62,10 +62,10 @@ Rectangle {
                 font.pixelSize: styles.h9
                 text: qsTr("Social & business goals")
                 verticalAlignment: Text.AlignVCenter
-                anchors.top: corpoGoalsInput.top
+                anchors.top: ngoGoalsInput.top
             }
             ColoredInputMulti {
-                id: corpoGoalsInput
+                id: ngoGoalsInput
             }
         }
         Row {
@@ -75,10 +75,10 @@ Rectangle {
                 font.pixelSize: styles.h9
                 text: qsTr("Team (employees)")
                 verticalAlignment: Text.AlignVCenter
-                anchors.top: corpoTeamInput.top
+                anchors.top: ngoTeamInput.top
             }
             ColoredInputMulti {
-                id: corpoTeamInput
+                id: ngoTeamInput
             }
         }
         Row {
@@ -88,10 +88,10 @@ Rectangle {
                 font.pixelSize: styles.h9
                 text: qsTr("Custom image (not supported yet)")
                 verticalAlignment: Text.AlignVCenter
-                anchors.top: corpoImageInput.top
+                anchors.top: ngoImageInput.top
             }
             ColoredInputMulti {
-                id: corpoImageInput
+                id: ngoImageInput
                 inputField.enabled: false
             }
         }
@@ -102,10 +102,10 @@ Rectangle {
                 font.pixelSize: styles.h9
                 text: qsTr("Contact information")
                 verticalAlignment: Text.AlignVCenter
-                anchors.top: corpoContactInput.top
+                anchors.top: ngoContactInput.top
             }
             ColoredInputMulti {
-                id: corpoContactInput
+                id: ngoContactInput
             }
         }
         Row {
@@ -115,15 +115,15 @@ Rectangle {
                 font.pixelSize: styles.h9
                 text: qsTr("Tags (separate with enter)")
                 verticalAlignment: Text.AlignVCenter
-                anchors.top: corpoTagsInput.top
+                anchors.top: ngoTagsInput.top
             }
             ColoredInputSingle2 {
-                id: corpoTagsInput
+                id: ngoTagsInput
 
                 inputField.Keys.onPressed: (event)=> {
                     if (event.key === Qt.Key_Space || event.key === Qt.Key_Enter || event.key === Qt.Key_Return) {
-                        container.corpoTags.push(inputField.text)
-                        container.corpoTags = container.corpoTags
+                        container.ngoTags.push(inputField.text)
+                        container.ngoTags = container.ngoTags
                         inputField.text = ""
                     }
                 }
@@ -138,7 +138,7 @@ Rectangle {
             spacing: 10  // Set the spacing between elements
 
             Repeater {
-                model: container.corpoTags
+                model: container.ngoTags
                 // delegate: PureSquareButton {
                 //     textContent: modelData
                 //     contentSize: styles.h10
@@ -168,8 +168,8 @@ Rectangle {
                     MouseArea {
                         anchors.fill: parent
                         onClicked: {
-                            container.corpoTags.splice(index, 1)
-                            container.corpoTags = container.corpoTags
+                            container.ngoTags.splice(index, 1)
+                            container.ngoTags = container.ngoTags
                         }
 
                     }
@@ -183,13 +183,13 @@ Rectangle {
             anchors.horizontalCenter: parent.horizontalCenter
             onClicked: {
                 CorpoListingModel.addCorpoListing(
-                            corpoNameInput.inputField.text,
-                            corpoExperienceInput.inputField.text,
-                            corpoGoalsInput.inputField.text,
-                            corpoTeamInput.inputField.text,
-                            container.corpoTags,
+                            ngoNameInput.inputField.text,
+                            ngoExperienceInput.inputField.text,
+                            ngoGoalsInput.inputField.text,
+                            ngoTeamInput.inputField.text,
+                            container.ngoTags,
                             "qrc:/res/assets/icons/icon_company.svg",
-                            corpoContactInput.inputField.text)
+                            ngoContactInput.inputField.text)
             }
         }
     }
