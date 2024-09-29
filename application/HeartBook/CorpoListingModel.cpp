@@ -8,7 +8,10 @@ CorpoListingModel::CorpoListingModel(QObject *parent)
     : QAbstractListModel{parent}
 {
     addCorpoListing("Bestlex", "Our Company has gained experience over many years...", "Improve well being, ...", "Senior Software Developer - Jeff, Marie and Zbigniew...", {"It ", "Trade ", "Fintech ", "... "}, QUrl("qrc:/res/assets/images/hq1.jpg"), "Email: contact@bestplex.com");
-}
+    addCorpoListing("Fluffy Bird Chase & Co", "Trading since 1912", "Improve well being, ...", "Senior Software Developer - Jeff, Marie and Zbigniew...", {"It ", "Trade ", "Fintech ", "... "}, QUrl("qrc:/res/assets/images/hq2.jpg"), "Email: contact@some.com");
+    addCorpoListing("Henry-Benz", "Our Company has gained experience over many years...", "Improve well being, ...", "Senior Software Developer - Jeff, Marie and Zbigniew...", {"It ", "Trade ", "Fintech ", "... "}, QUrl("qrc:/res/assets/images/hq3.jpg"), "Email: contact@goo.com");
+    addCorpoListing("Softhanza", "Winging since 1953, Lorem Ipsum dolor set...", "Improve well being, ...", "Senior Software Developer - Jeff, Marie and Zbigniew...", {"It ", "Trade ", "Fintech ", "... "}, QUrl("qrc:/res/assets/images/hq4.jpg"), "Email: contact@foo.com");
+    }
 
 int CorpoListingModel::rowCount(const QModelIndex &parent) const
 {
