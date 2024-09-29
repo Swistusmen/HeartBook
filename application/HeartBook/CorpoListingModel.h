@@ -15,7 +15,9 @@ public:
         CorpoExperienceRole,
         CorpoGoalsRole,
         CorpoTeamRole,
-        CorpoTagsRole
+        CorpoTagsRole,
+        CorpoImageRole,
+        CorpoContactRole
     };
 
     explicit CorpoListingModel(QObject *parent = nullptr);
@@ -30,7 +32,9 @@ public slots:
                          const QString& experience,
                          const QString& goals,
                          const QString& team,
-                         const QList<QString>& tags);
+                         const QList<QString>& tags,
+                         const QUrl& image,
+                         const QString& contact);
 
 signals:
 

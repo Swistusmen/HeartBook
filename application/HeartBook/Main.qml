@@ -4,6 +4,7 @@ import QtQuick.Layouts
 import HeartBook
 import com.HeartBook.MiddleMan
 import com.HeartBook.CorpoListingModel
+import Qt5Compat.GraphicalEffects
 
 Window {
     id: root
@@ -153,20 +154,124 @@ Window {
                                 spacing: 20
                                 clip: true
                                 delegate: Item {
-                                    id: corpopListing
+                                    id: corpoListing
 
                                     required property string corpoName
                                     required property string corpoExperience
                                     required property string corpoGoals
                                     required property string corpoTeam
                                     required property var corpoTags
-                                    width: 100
-                                    height: 100
+                                    required property url corpoImage
+                                    required property string corpoContact
+                                    height: 200
+                                    width: styles.pageWidthContent
 
                                     Rectangle {
-                                        width: 100
-                                        height: 100
-                                        color: styles.rose4
+                                        anchors.fill: parent
+                                        color: styles.rose6
+                                        radius: styles.squareButtonRoundness
+                                        Image {
+                                            id: corpoPreviewImg
+                                            anchors {
+                                                top: parent.top
+                                                bottom: parent.bottom
+                                                left: parent.left
+                                                margins: 15
+                                            }
+                                            width: 300
+                                            source: corpoListing.corpoImage
+                                            fillMode: Image.PreserveAspectCrop
+
+                                            layer.enabled: true
+                                            layer.effect: OpacityMask {
+                                                maskSource: ShaderEffectSource {
+                                                    sourceItem: Rectangle {
+                                                        width: corpoPreviewImg.width
+                                                        height: corpoPreviewImg.height
+                                                        radius: styles.squareButtonRoundness
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        Text {
+                                            id: corpoNamePreview
+                                            anchors {
+                                                top: parent.top
+                                                left: corpoPreviewImg.right
+                                                margins: 15
+                                                right: parent.right
+                                            }
+                                            color: styles.black
+                                            font.bold: true
+                                            font.pixelSize: styles.h6
+                                            text: corpoListing.corpoName
+                                            elide: Text.ElideRight
+                                        }
+                                        Text {
+                                            id: corpoExperiencePreview
+                                            anchors {
+                                                top: corpoNamePreview.bottom
+                                                left: corpoPreviewImg.right
+                                                leftMargin: 15
+                                                right: parent.right
+                                            }
+                                            color: styles.black
+                                            font.pixelSize: styles.h9
+                                            text: "Experience: " + corpoListing.corpoExperience
+                                            elide: Text.ElideRight
+                                        }
+                                        Text {
+                                            id: corpoGoalsPreview
+                                            anchors {
+                                                top: corpoExperiencePreview.bottom
+                                                left: corpoPreviewImg.right
+                                                leftMargin: 15
+                                                right: parent.right
+                                            }
+                                            color: styles.black
+                                            font.pixelSize: styles.h9
+                                            text: "Our goals: " + corpoListing.corpoGoals
+                                            elide: Text.ElideRight
+                                        }
+                                        Text {
+                                            id: corpoTeamPreview
+                                            anchors {
+                                                top: corpoGoalsPreview.bottom
+                                                left: corpoPreviewImg.right
+                                                leftMargin: 15
+                                                right: parent.right
+                                            }
+                                            color: styles.black
+                                            font.pixelSize: styles.h9
+                                            text: "Our team: " + corpoListing.corpoTeam
+                                            elide: Text.ElideRight
+                                        }
+                                        Text {
+                                            id: corpoTagsPreview
+                                            anchors {
+                                                top: corpoTeamPreview.bottom
+                                                left: corpoPreviewImg.right
+                                                leftMargin: 15
+                                                right: parent.right
+                                            }
+                                            color: styles.black
+                                            font.pixelSize: styles.h10
+                                            text: "Tags: " + corpoListing.corpoTags
+                                            elide: Text.ElideRight
+                                        }
+                                        Text {
+                                            id: corpoContactPreview
+                                            anchors {
+                                                top: corpoTagsPreview.bottom
+                                                left: corpoPreviewImg.right
+                                                leftMargin: 15
+                                                right: parent.right
+                                            }
+                                            color: styles.black
+                                            font.pixelSize: styles.h10
+                                            text: "Contact us: " + corpoListing.corpoContact
+                                            elide: Text.ElideRight
+                                        }
                                     }
                                 }
                             }

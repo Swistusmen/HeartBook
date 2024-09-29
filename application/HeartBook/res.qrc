@@ -2,5 +2,10 @@
     <qresource prefix="/res">
         <file>assets/icons/icon_heart_pulse.svg</file>
         <file>assets/icons/icon_heart_give.svg</file>
+        <file>assets/images/hq1.jpg</file>
+        <file>assets/images/hq2.jpg</file>
+        <file>assets/images/hq3.jpg</file>
+        <file>assets/images/hq4.jpg</file>
+        <file>assets/icons/icon_company.svg</file>
     </qresource>
 </RCC>

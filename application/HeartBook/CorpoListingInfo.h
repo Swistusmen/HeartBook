@@ -2,6 +2,7 @@
 #define CORPOLISTINGINFO_H
 
 #include <QObject>
+#include <QUrl>
 
 class CorpoListingInfo : public QObject
 {
@@ -12,7 +13,8 @@ class CorpoListingInfo : public QObject
     Q_PROPERTY(QString corpoGoals READ corpoGoals WRITE setCorpoGoals NOTIFY corpoGoalsChanged FINAL)
     Q_PROPERTY(QString corpoTeam READ corpoTeam WRITE setCorpoTeam NOTIFY corpoTeamChanged FINAL)
     Q_PROPERTY(QList<QString> corpoTags READ corpoTags WRITE setCorpoTags NOTIFY corpoTagsChanged FINAL)
-
+    Q_PROPERTY(QString corpoContact READ corpoContact WRITE setCorpoContact NOTIFY corpoContactChanged FINAL)
+    Q_PROPERTY(QUrl corpoImage READ corpoImage WRITE setCorpoImage NOTIFY corpoImageChanged FINAL)
 
 public:
     explicit CorpoListingInfo(QObject *parent = nullptr);
@@ -33,6 +35,12 @@ public:
     QList<QString> corpoTags() const;
     void setCorpoTags(const QList<QString> &newCorpoTags);
 
+    QString corpoContact() const;
+    void setCorpoContact(const QString &newCorpoContact);
+
+    QUrl corpoImage() const;
+    void setCorpoImage(const QUrl &newCorpoImage);
+
 signals:
     void corpoNameChanged();
     void corpoExperienceChanged();
@@ -43,12 +51,18 @@ signals:
 
     void corpoTagsChanged();
 
+    void corpoContactChanged();
+
+    void corpoImageChanged();
+
 private:
     QString m_corpoName;
     QString m_corpoExperience;
     QString m_corpoGoals;
     QString m_corpoTeam;
     QList<QString> m_corpoTags;
+    QString m_corpoContact = "Email: company@email.com, tel: 123-456-789";
+    QUrl m_corpoImage = QUrl("qrc:/res/assets/icons/icon_company.svg");
 };
 
 #endif // CORPOLISTINGINFO_H

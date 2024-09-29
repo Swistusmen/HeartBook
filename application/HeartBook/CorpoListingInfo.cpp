@@ -68,3 +68,29 @@ void CorpoListingInfo::setCorpoTags(const QList<QString> &newCorpoTags)
     m_corpoTags = newCorpoTags;
     emit corpoTagsChanged();
 }
+
+QString CorpoListingInfo::corpoContact() const
+{
+    return m_corpoContact;
+}
+
+void CorpoListingInfo::setCorpoContact(const QString &newCorpoContact)
+{
+    if (m_corpoContact == newCorpoContact)
+        return;
+    m_corpoContact = newCorpoContact;
+    emit corpoContactChanged();
+}
+
+QUrl CorpoListingInfo::corpoImage() const
+{
+    return m_corpoImage;
+}
+
+void CorpoListingInfo::setCorpoImage(const QUrl &newCorpoImage)
+{
+    if (m_corpoImage == newCorpoImage)
+        return;
+    m_corpoImage = newCorpoImage;
+    emit corpoImageChanged();
+}

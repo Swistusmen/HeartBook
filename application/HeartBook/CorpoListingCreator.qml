@@ -86,6 +86,33 @@ Rectangle {
             Text {
                 color: styles.black
                 font.pixelSize: styles.h9
+                text: qsTr("Custom image (not supported yet)")
+                verticalAlignment: Text.AlignVCenter
+                anchors.top: corpoImageInput.top
+            }
+            ColoredInputMulti {
+                id: corpoImageInput
+                inputField.enabled: false
+            }
+        }
+        Row {
+            spacing: 10
+            Text {
+                color: styles.black
+                font.pixelSize: styles.h9
+                text: qsTr("Contact information")
+                verticalAlignment: Text.AlignVCenter
+                anchors.top: corpoContactInput.top
+            }
+            ColoredInputMulti {
+                id: corpoContactInput
+            }
+        }
+        Row {
+            spacing: 10
+            Text {
+                color: styles.black
+                font.pixelSize: styles.h9
                 text: qsTr("Tags (separate with enter)")
                 verticalAlignment: Text.AlignVCenter
                 anchors.top: corpoTagsInput.top
@@ -160,7 +187,9 @@ Rectangle {
                             corpoExperienceInput.inputField.text,
                             corpoGoalsInput.inputField.text,
                             corpoTeamInput.inputField.text,
-                            container.corpoTags)
+                            container.corpoTags,
+                            "qrc:/res/assets/icons/icon_company.svg",
+                            corpoContactInput.inputField.text)
             }
         }
     }
