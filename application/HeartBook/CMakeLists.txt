@@ -37,6 +37,7 @@ qt_add_qml_module(appHeartBook
         SOURCES CorpoListingModel.h CorpoListingModel.cpp
         SOURCES CompanyListingInfo.h CompanyListingInfo.cpp
         SOURCES CompanyListingModel.h CompanyListingModel.cpp
+        QML_FILES CorporationListingCreator.qml
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.

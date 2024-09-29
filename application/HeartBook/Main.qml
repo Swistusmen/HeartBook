@@ -5,6 +5,7 @@ import HeartBook
 import com.HeartBook.MiddleMan
 import com.HeartBook.CorpoListingModel
 import Qt5Compat.GraphicalEffects
+import com.HeartBook.CompanyListingModel
 
 Window {
     id: root
