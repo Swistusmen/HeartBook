@@ -1,6 +1,7 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include "MiddleMan.h"
+#include "CorpoListingModel.h"
 
 int main(int argc, char *argv[])
 {
@@ -8,6 +9,8 @@ int main(int argc, char *argv[])
 
     MiddleMan* m_middleMan = new MiddleMan(&app);
     qmlRegisterSingletonInstance("com.HeartBook.MiddleMan", 1, 0, "MiddleMan", m_middleMan);
+    CorpoListingModel* m_corpoListingModel = new CorpoListingModel(&app);
+    qmlRegisterSingletonInstance("com.HeartBook.CorpoListingModel", 1, 0, "CorpoListingModel", m_corpoListingModel);
 
     QQmlApplicationEngine engine;
     QObject::connect(

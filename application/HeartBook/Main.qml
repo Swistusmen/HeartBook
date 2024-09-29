@@ -3,6 +3,7 @@ import QtQuick.Controls
 import QtQuick.Layouts
 import HeartBook
 import com.HeartBook.MiddleMan
+import com.HeartBook.CorpoListingModel
 
 Window {
     id: root
@@ -89,11 +90,11 @@ Window {
                             top: homePageSwitchButton1.bottom
                             left: parent.left
                             right: parent.right
-                            bottom: parent.bottom
+                            //bottom: parent.bottom
                         }
+                        height: contentItem.height
 
                         Item {
-
                             Rectangle {
                                 id: corpTopSec
                                 color: styles.greyLight
@@ -120,12 +121,13 @@ Window {
                                 }
                             }
                             Item {
+                                id: corpoCreatorSection
                                 anchors {
                                     top: corpTopSec.bottom
                                     left: parent.left
                                     right: parent.right
-                                    bottom: parent.bottom
                                 }
+                                z: 1
 
                                 CorpoListingCreator {
                                     id: corpopListingCreator
@@ -135,6 +137,37 @@ Window {
                                         top: parent.top
                                     }
                                     visible: hidden ? false : true
+                                }
+                            }
+                            ListView {
+                                id: corpoListView
+                                anchors {
+                                    top: corpTopSec.bottom
+                                    left: parent.left
+                                    right: parent.right
+                                    bottom: parent.bottom
+                                    bottomMargin: 250
+                                }
+                                //Rectangle { anchors.fill: parent; color: styles.redDefault }
+                                model: CorpoListingModel
+                                spacing: 20
+                                clip: true
+                                delegate: Item {
+                                    id: corpopListing
+
+                                    required property string corpoName
+                                    required property string corpoExperience
+                                    required property string corpoGoals
+                                    required property string corpoTeam
+                                    required property var corpoTags
+                                    width: 100
+                                    height: 100
+
+                                    Rectangle {
+                                        width: 100
+                                        height: 100
+                                        color: styles.rose4
+                                    }
                                 }
                             }
                         }

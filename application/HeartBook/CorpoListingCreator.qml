@@ -1,13 +1,14 @@
 import QtQuick
 import com.HeartBook.MiddleMan
 import HeartBook
+import com.HeartBook.CorpoListingModel
 
 
 Rectangle {
     id: root
     property bool hidden: true
 
-    height: container.height
+    height: container.height * 1.2
 
     MouseArea {
         anchors.fill: parent
@@ -20,9 +21,11 @@ Rectangle {
 
     Column {
         id: container
+        property var corpoTags: []
         anchors {
             left: parent.left
             right: parent.right
+            leftMargin: 25
         }
         spacing: 15
         Row {
@@ -87,9 +90,77 @@ Rectangle {
                 verticalAlignment: Text.AlignVCenter
                 anchors.top: corpoTagsInput.top
             }
-            ColoredInputMulti {
+            ColoredInputSingle2 {
                 id: corpoTagsInput
-                inputField.onTextChanged: console.log()
+
+                inputField.Keys.onPressed: (event)=> {
+                    if (event.key === Qt.Key_Space || event.key === Qt.Key_Enter || event.key === Qt.Key_Return) {
+                        container.corpoTags.push(inputField.text)
+                        container.corpoTags = container.corpoTags
+                        inputField.text = ""
+                    }
+                }
+            }
+        }
+        Flow {
+            anchors {
+                left: parent.left
+                right: parent.right
+            }
+
+            spacing: 10  // Set the spacing between elements
+
+            Repeater {
+                model: container.corpoTags
+                // delegate: PureSquareButton {
+                //     textContent: modelData
+                //     contentSize: styles.h10
+                // }
+
+                delegate: Rectangle {
+                    width: tagText.implicitWidth + 10
+                    height: 15
+                    radius: 3
+                    color: styles.rose5
+                    Text {
+                        id: tagText
+                        text: modelData
+                        font.pixelSize: styles.h10
+                        wrapMode: Text.WordWrap
+                        color: styles.black
+                        // Size based on content
+                        anchors {
+                            bottom: parent.bottom
+                            bottomMargin: 5
+                            horizontalCenter: parent.horizontalCenter
+                            //verticalCenter: parent.verticalCenter
+                        }
+                        width: implicitWidth
+                        // height: implicitHeight
+                    }
+                    MouseArea {
+                        anchors.fill: parent
+                        onClicked: {
+                            container.corpoTags.splice(index, 1)
+                            container.corpoTags = container.corpoTags
+                        }
+
+                    }
+                }
+            }
+        }
+
+        PureSquareButton {
+            textContent: "Post new listing"
+            contentSize: styles.h8
+            anchors.horizontalCenter: parent.horizontalCenter
+            onClicked: {
+                CorpoListingModel.addCorpoListing(
+                            corpoNameInput.inputField.text,
+                            corpoExperienceInput.inputField.text,
+                            corpoGoalsInput.inputField.text,
+                            corpoTeamInput.inputField.text,
+                            container.corpoTags)
             }
         }
     }

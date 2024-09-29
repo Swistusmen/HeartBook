@@ -12,31 +12,30 @@ Item {
     property color inputTextColor: styles.black
     property int contentSize: styles.h8
     property int textSize: styles.h9
-    property TextEdit inputField: input
+    property TextField inputField: input
     property bool isNumeric: false
 
     property string inputValue: input.text
 
-    implicitWidth: 450
+    implicitWidth: 150
     //width: 100
     //width: outerBackground.width
-    height: input.height * 1.2
+    height: root.contentSize * 2.5
     Rectangle {
         anchors.fill: input
         color: root.bgColor
     }
 
 
-    TextEdit {
+    TextField {
         id: input
         text: ""
         //placeholderText: root.placeHolderText
-        //placeholderTextColor: root.placeHolderTextColor
+        placeholderTextColor: root.placeHolderTextColor
         anchors {
             left: parent.left
             right: parent.right
             top: parent.top
-            //verticalCenter: parent.verticalCenter
             // top: parent.top
             // bottom: parent.bottom
             // centerIn: parent
@@ -46,7 +45,6 @@ Item {
         //background: Rectangle { color: root.bgColor }
         color: root.inputTextColor
         font.pixelSize: root.textSize
-        wrapMode: TextEdit.WordWrap
 
         // validator: IntValidator {
         //     bottom: 1
@@ -71,7 +69,7 @@ Item {
         }
         // onActiveFocusChanged: {
         //     if (parent.activeFocus === false) {
-        //         //console.log("Input value: " + input.text)
+        //         console.log("Input value: " + input.text)
         //     }
         // }
     }
