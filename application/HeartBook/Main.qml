@@ -47,12 +47,12 @@ Window {
                     id: homePage
                     height: parent.height
                     width: parent.width
-                    property bool categoryIsCorpo: true
+                    property bool categoryIsCorpo: false
 
                     SharpSquareButton {
                         id: homePageSwitchButton1
-                        textContent: "Corporation listings"
-                        active: homePage.categoryIsCorpo
+                        textContent: "NGOs listings"
+                        active: !homePage.categoryIsCorpo
                         idleButtonColor: styles.rose2
                         anchors {
                             left: parent.left
@@ -61,16 +61,16 @@ Window {
                         }
                         fancyColors: false
                         onClicked: {
-                            if (!homePage.categoryIsCorpo) {
-                                homePage.categoryIsCorpo = true
+                            if (homePage.categoryIsCorpo) {
+                                homePage.categoryIsCorpo = false
                                 listingsStackLayout.currentIndex = 0
                             }
                         }
                     }
                     SharpSquareButton {
                         id: homePageSwitchButton2
-                        textContent: "NGOs listings"
-                        active: !homePage.categoryIsCorpo
+                        textContent: "Corporation listings"
+                        active: homePage.categoryIsCorpo
                         idleButtonColor: styles.rose2
                         anchors {
                             left: parent.horizontalCenter
@@ -79,8 +79,8 @@ Window {
                         }
                         fancyColors: false
                         onClicked: {
-                            if (homePage.categoryIsCorpo) {
-                                homePage.categoryIsCorpo = false
+                            if (!homePage.categoryIsCorpo) {
+                                homePage.categoryIsCorpo = true
                                 listingsStackLayout.currentIndex = 1
                             }
                         }
@@ -108,7 +108,7 @@ Window {
                                 MouseArea { anchors.fill: parent; onClicked: forceActiveFocus() }
 
                                 PureSquareButton {
-                                    textContent: corpopListingCreator.hidden ? "Create a corporate listing"
+                                    textContent: corpopListingCreator.hidden ? "Create a NGO listing"
                                         : "Cancel"
                                     anchors {
                                         left: parent.left
@@ -290,7 +290,7 @@ Window {
                                 height: 100
 
                                 PureSquareButton {
-                                    textContent: "Create a NGO listing"
+                                    textContent: "Create a Corporate listing"
                                     anchors {
                                         left: parent.left
                                         verticalCenter: parent.verticalCenter
@@ -384,6 +384,7 @@ Window {
 
                         onClicked: {
                             MiddleMan.sendLoginRequest(loginPageEmailInput.inputField.text, loginPagePasswordInput.inputField.text)
+                            stackLayout.currentIndex = 0
                         }
                     }
 
@@ -467,6 +468,7 @@ Window {
 
                         onClicked: {
                             MiddleMan.sendSignupRequest(signupPageEmailInput.inputField.text, signupPagePasswordInput.inputField.text)
+                            stackLayout.currentIndex = 0
                         }
                     }
 

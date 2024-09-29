@@ -29,7 +29,7 @@ qt_add_qml_module(appHeartBook
         QML_FILES ColoredInputSingle.qml
         SOURCES MiddleMan.h MiddleMan.cpp
         SOURCES
-        SOURCES NGOListingInfo.h NGOListingInfo.cpp
+        SOURCES
         QML_FILES ColoredInputMulti.qml
         QML_FILES CorpoListingCreator.qml
         SOURCES CorpoListingInfo.h CorpoListingInfo.cpp
