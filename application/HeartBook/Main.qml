@@ -109,6 +109,7 @@ Window {
                                 MouseArea { anchors.fill: parent; onClicked: forceActiveFocus() }
 
                                 PureSquareButton {
+                                    id: newNgoButton
                                     textContent: ngoListingCreator.hidden ? "Create a NGO listing"
                                         : "Cancel"
                                     anchors {
@@ -119,6 +120,31 @@ Window {
                                     onClicked: {
                                         ngoListingCreator.hidden = !ngoListingCreator.hidden
                                         //console.log("feature is now: " + corpopListingCreator.hidden)
+                                    }
+                                }
+
+                                Rectangle {
+                                    anchors {
+                                        left: newNgoButton.right
+                                        top: newNgoButton.top
+                                        bottom: newNgoButton.bottom
+                                        right: parent.right
+                                        leftMargin: 30
+                                        rightMargin: 30
+                                    }
+                                    color: styles.white
+                                    radius: styles.squareButtonRoundness
+                                    Text {
+                                        anchors {
+                                            fill: parent
+                                            margins: 5
+                                            leftMargin: 10
+                                        }
+                                        horizontalAlignment: Text.AlignLeft
+                                        verticalAlignment: Text.AlignVCenter
+                                        color: styles.grey
+                                        font.pixelSize: styles.h7
+                                        text: qsTr("Search here")
                                     }
                                 }
                             }
@@ -289,14 +315,212 @@ Window {
                                     top: parent.top
                                 }
                                 height: 100
+                                MouseArea { anchors.fill: parent; onClicked: forceActiveFocus() }
 
                                 PureSquareButton {
-                                    textContent: "Create a Corporate listing"
+                                    id: newCorpButton
+                                    textContent: corpoListingCreator.hidden ? "Create a Corporate listing"
+                                        : "Cancel"
                                     anchors {
                                         left: parent.left
                                         verticalCenter: parent.verticalCenter
                                         leftMargin: 30
                                     }
+                                    onClicked: {
+                                        corpoListingCreator.hidden = !corpoListingCreator.hidden
+                                    }
+                                }
+                                Rectangle {
+                                    anchors {
+                                        left: newCorpButton.right
+                                        top: newCorpButton.top
+                                        bottom: newCorpButton.bottom
+                                        right: parent.right
+                                        leftMargin: 30
+                                        rightMargin: 30
+                                    }
+                                    color: styles.white
+                                    radius: styles.squareButtonRoundness
+                                    Text {
+                                        anchors {
+                                            fill: parent
+                                            margins: 5
+                                            leftMargin: 10
+                                        }
+                                        horizontalAlignment: Text.AlignLeft
+                                        verticalAlignment: Text.AlignVCenter
+                                        color: styles.grey
+                                        font.pixelSize: styles.h7
+                                        text: qsTr("Search here")
+                                    }
+                                }
+                            }
+                            Item {
+                                id: corpoCreatorSection
+                                anchors {
+                                    top: corpoTopSec.bottom
+                                    left: parent.left
+                                    right: parent.right
+                                }
+                                z: 1
+
+                                CorporationListingCreator {
+                                    id: corpoListingCreator
+                                    anchors {
+                                        left: parent.left
+                                        right: parent.right
+                                        top: parent.top
+                                    }
+                                    visible: hidden ? false : true
+                                }
+                            }
+                            ListView {
+                                id: corpoListView
+                                anchors {
+                                    top: corpoTopSec.bottom
+                                    left: parent.left
+                                    right: parent.right
+                                    bottom: parent.bottom
+                                    bottomMargin: 250
+                                }
+                                model: CompanyListingModel
+                                spacing: 20
+                                clip: true
+                                delegate: Item {
+                                    id: corpoListing
+
+                                    required property string companyName
+                                    required property string companyStrategies
+                                    required property string companyBudget
+                                    required property string companyLooking
+                                    required property string companyGrants
+                                    required property url companyImage
+                                    required property var companyTags
+                                    required property string companyContact
+                                    height: 200
+                                    width: styles.pageWidthContent
+
+                                    Rectangle {
+                                        anchors.fill: parent
+                                        color: styles.rose6
+                                        radius: styles.squareButtonRoundness
+                                        Image {
+                                            id: corpoPreviewImg
+                                            anchors {
+                                                top: parent.top
+                                                bottom: parent.bottom
+                                                left: parent.left
+                                                margins: 15
+                                            }
+                                            width: 300
+                                            source: corpoListing.companyImage
+                                            fillMode: Image.PreserveAspectCrop
+
+                                            layer.enabled: true
+                                            layer.effect: OpacityMask {
+                                                maskSource: ShaderEffectSource {
+                                                    sourceItem: Rectangle {
+                                                        width: corpoPreviewImg.width
+                                                        height: corpoPreviewImg.height
+                                                        radius: styles.squareButtonRoundness
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        Text {
+                                            id: corpoNamePreview
+                                            anchors {
+                                                top: parent.top
+                                                left: corpoPreviewImg.right
+                                                margins: 15
+                                                right: parent.right
+                                            }
+                                            color: styles.black
+                                            font.bold: true
+                                            font.pixelSize: styles.h6
+                                            text: corpoListing.companyName
+                                            elide: Text.ElideRight
+                                        }
+                                        Text {
+                                            id: corpoStrategiesPreview
+                                            anchors {
+                                                top: corpoNamePreview.bottom
+                                                left: corpoPreviewImg.right
+                                                leftMargin: 15
+                                                right: parent.right
+                                            }
+                                            color: styles.black
+                                            font.pixelSize: styles.h9
+                                            text: "Our trategies: " + corpoListing.companyStrategies
+                                            elide: Text.ElideRight
+                                        }
+                                        Text {
+                                            id: corpoBudgetPreview
+                                            anchors {
+                                                top: corpoStrategiesPreview.bottom
+                                                left: corpoPreviewImg.right
+                                                leftMargin: 15
+                                                right: parent.right
+                                            }
+                                            color: styles.black
+                                            font.pixelSize: styles.h9
+                                            text: "Our budget: " + corpoListing.companyBudget
+                                            elide: Text.ElideRight
+                                        }
+                                        Text {
+                                            id: corpoLookingPreview
+                                            anchors {
+                                                top: corpoBudgetPreview.bottom
+                                                left: corpoPreviewImg.right
+                                                leftMargin: 15
+                                                right: parent.right
+                                            }
+                                            color: styles.black
+                                            font.pixelSize: styles.h9
+                                            text: "We are looking for: " + corpoListing.companyLooking
+                                            elide: Text.ElideRight
+                                        }
+                                        Text {
+                                            id: corpoGrantsPreview
+                                            anchors {
+                                                top: corpoLookingPreview.bottom
+                                                left: corpoPreviewImg.right
+                                                leftMargin: 15
+                                                right: parent.right
+                                            }
+                                            color: styles.black
+                                            font.pixelSize: styles.h10
+                                            text: "We offer grants: " + corpoListing.companyGrants
+                                            elide: Text.ElideRight
+                                        }
+                                        Text {
+                                            id: corpoTagsPreview
+                                            anchors {
+                                                top: corpoGrantsPreview.bottom
+                                                left: corpoPreviewImg.right
+                                                leftMargin: 15
+                                                right: parent.right
+                                            }
+                                            color: styles.black
+                                            font.pixelSize: styles.h10
+                                            text: "Tags: " + corpoListing.companyTags
+                                            elide: Text.ElideRight
+                                        }
+                                        Text {
+                                            id: corpoContactPreview
+                                            anchors {
+                                                top: corpoTagsPreview.bottom
+                                                left: corpoPreviewImg.right
+                                                leftMargin: 15
+                                                right: parent.right
+                                            }
+                                            color: styles.black
+                                            font.pixelSize: styles.h10
+                                            text: "Contact us: " + corpoListing.companyContact
+                                            elide: Text.ElideRight
+                                        }
+                                    }
+
                                 }
                             }
                         }

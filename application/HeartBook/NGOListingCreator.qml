@@ -86,7 +86,7 @@ Rectangle {
             Text {
                 color: styles.black
                 font.pixelSize: styles.h9
-                text: qsTr("Custom image (not supported yet)")
+                text: qsTr("Custom image")
                 verticalAlignment: Text.AlignVCenter
                 anchors.top: ngoImageInput.top
             }
